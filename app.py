@@ -1,6 +1,6 @@
 import os
 
-veiculosRegistrados = [{'placa':'F63WJN','modelo':'NISSAN','ano':'2020'}, {'placa':'JF92N3','modelo':'CIVIC','ano':'2018'}, {'placa':'F8D9WJ','modelo':'HRV','ano':'2019'}]
+veiculosRegistrados = [{'placa':'F63WJN','modelo':'NISSAN','ano':'2020','statusAtivação':False}, {'placa':'JF92N3','modelo':'CIVIC','ano':'2018','statusAtivação':False}, {'placa':'F8D9WJ','modelo':'HRV','ano':'2019','statusAtivação':False}]
 
 #FUNÇÕES PARA MOSTRAR TEXTO
 
@@ -26,6 +26,11 @@ def opcao_invalida():
     input('Digite uma tecla para voltar ao menu principal: ')
     main()
 
+def voltar_ao_menu():
+   resposta = input('Deseja voltar ao menu principal? (Y/N) ')
+   if resposta == 'Y' or resposta == 'y':
+       main()
+    
 #FUNÇÃO QUE CADASTRA NOVOS VEÍCULOS
 
 def cadastrar_novo_veiculo():
@@ -51,12 +56,43 @@ def cadastrar_novo_veiculo():
 
 def listar_veiculos():
     exibir_subtitulos('Lista de veículos cadastrados: ')
+    print()
     
     for veiculo in veiculosRegistrados:
         placa_do_veiculo = veiculo['placa']
         modelo_veiculo = veiculo['modelo']
         ano_veiculo = veiculo['ano']
         print(f'{placa_do_veiculo} - {modelo_veiculo} - {ano_veiculo}')
+    print()
+
+    voltar_ao_menu()
+
+def veiculos_ativos():
+        resposta = input('Deseja ver os veículos ativos no momento? (Y/N) ')
+        if resposta == 'Y' or resposta == 'y':
+            if veiculosRegistrados['statusAtivação'] == True:
+                placa_do_veiculo = veiculosRegistrados['placa']
+                modelo_veiculo = veiculosRegistrados['modelo']
+                ano_veiculo = veiculosRegistrados['ano']
+                print(f'O veículo {modelo_veiculo} com placa {placa_do_veiculo} e ano {ano_veiculo} está ATIVO!')
+
+def alterar_status_veiculo():
+    exibir_subtitulos('Veículos ativos: ')
+
+    placa_veiculo = input('Digite a placa do veículo que deseja alterar o status: ')
+    veiculo_encontrado = False
+    
+    for veiculo in veiculosRegistrados:
+        if placa_veiculo == veiculo['placa']:
+            veiculo_encontrado = True
+            veiculo['statusAtivação'] = not veiculo['statusAtivação']
+            mensagem = f'O veiculo com a placa {placa_veiculo} foi ATIVADO com sucesso!' if veiculo['statusAtivação'] else f'O veículo com a placa {placa_veiculo} foi DESATIVADO com sucesso!'
+            print(mensagem)
+    if not veiculo_encontrado:
+        print('O veículo não foi encontrado!')
+
+    veiculos_ativos()
+    voltar_ao_menu()
 
 def escolher_opcao():
     try:
@@ -67,7 +103,7 @@ def escolher_opcao():
         elif opcao_escolhida == 2:
             listar_veiculos()
         elif opcao_escolhida == 3:
-            print('Ativar veículo')
+            alterar_status_veiculo()
         elif opcao_escolhida == 4:
             finalizar_app()
         else:
