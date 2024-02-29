@@ -10,7 +10,11 @@ def exibir_nome_do_programa():
     
 def exibir_subtitulos(texto):
     os.system('cls')
+    linha = '*' * (len(texto))
+    print(linha)
     print(texto)
+    print(linha)
+
 
 def exibir_opcoes():
     print('1. Cadastrar veículo')
@@ -62,19 +66,12 @@ def listar_veiculos():
         placa_do_veiculo = veiculo['placa']
         modelo_veiculo = veiculo['modelo']
         ano_veiculo = veiculo['ano']
-        print(f'{placa_do_veiculo} - {modelo_veiculo} - {ano_veiculo}')
+        status_veiculo = 'Ativado' if veiculo['statusAtivação'] else 'desativado'
+        
+        print(f'{placa_do_veiculo.ljust(7)} - {modelo_veiculo.ljust(7)} - {ano_veiculo.ljust(7)} - {status_veiculo}')
     print()
 
     voltar_ao_menu()
-
-def veiculos_ativos():
-        resposta = input('Deseja ver os veículos ativos no momento? (Y/N) ')
-        if resposta == 'Y' or resposta == 'y':
-            if veiculosRegistrados['statusAtivação'] == True:
-                placa_do_veiculo = veiculosRegistrados['placa']
-                modelo_veiculo = veiculosRegistrados['modelo']
-                ano_veiculo = veiculosRegistrados['ano']
-                print(f'O veículo {modelo_veiculo} com placa {placa_do_veiculo} e ano {ano_veiculo} está ATIVO!')
 
 def alterar_status_veiculo():
     exibir_subtitulos('Veículos ativos: ')
@@ -91,7 +88,6 @@ def alterar_status_veiculo():
     if not veiculo_encontrado:
         print('O veículo não foi encontrado!')
 
-    veiculos_ativos()
     voltar_ao_menu()
 
 def escolher_opcao():
