@@ -1,0 +1,29 @@
+# credenciais e variáveis de ambiente
+.env
+
+# dependências geradas pelo Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ambiente virtual do Python
+.venv/
+venv/
+env/
+
+# configurações do VS Code
+.vscode/
+*.code-workspace
+
+# logs e arquivos temporários
+*.log
+*.tmp
+*.swp
+
+#  banco de dados SQLite (se houver)
+*.sqlite3
+*.db
+
+# arquivos de cache
+.cache/
