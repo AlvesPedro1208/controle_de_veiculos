@@ -1,29 +1,31 @@
-# credenciais e variáveis de ambiente
-.env
-
-# dependências geradas pelo Python
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.env
+.env
+backend/.env
 
-# ambiente virtual do Python
+# Virtual env
 .venv/
-venv/
 env/
+venv/
 
-# configurações do VS Code
+# VSCode settings
 .vscode/
-*.code-workspace
 
-# logs e arquivos temporários
+# Logs
 *.log
-*.tmp
-*.swp
 
-#  banco de dados SQLite (se houver)
-*.sqlite3
-*.db
+# OS
+.DS_Store
+Thumbs.db
 
-# arquivos de cache
-.cache/
+# Node / React
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# IDEs
+.idea/
